@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CandidatosSistema.Models.Sueldo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCaptura)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCaptura)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SueldoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SueldoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SueldoId })
+        </td>
+    </tr>
+}
+
+</table>

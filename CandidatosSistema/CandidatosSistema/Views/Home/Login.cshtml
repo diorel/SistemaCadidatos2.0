@@ -1,0 +1,124 @@
+﻿@model CandidatosSistema.Models.Usuario
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    // esto es para crear un tag
+    @Html.AntiForgeryToken() // esto es para evitar ataques CSRF
+    @Html.ValidationSummary(true)
+
+    if (ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Creative - Start Bootstrap Theme</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- Plugin CSS -->
+        <link href="~/css/animate.min.css" rel="stylesheet" />
+
+        <!-- Custom CSS -->
+        <link href="~/css/creative.css" rel="stylesheet" />
+        <link href="~/css/form-elements.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style>
+            h1 {
+                color: white;
+                font-size: 18px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+            header {
+                padding-top: 1%;
+            }
+        </style>
+    </head>
+
+    <body id="page-top">
+   
+        <header>
+            <div class="header-co<ntent">
+                <div style="align-items:flex-end">
+                    <div id="logo" style="padding-right:80%;">
+                        <img src="~/img/LogoAgentia.png" style="height:70px;" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:0;">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h1>Sistema de Candidatos Agentia - Version BETA</h1>
+                            </div>
+                            <div class="form-top-right">
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">Nombre</label>
+                                @Html.LabelFor(a => a.Usuario1)
+                                @Html.TextBoxFor(a => a.Usuario1)
+                                @Html.ValidationMessageFor(a => a.Usuario1)
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(a => a.Clave)
+                                @Html.TextBoxFor(a => a.Clave)
+                                @Html.ValidationMessageFor(a => a.Clave)
+                            </div>
+
+                            <input type="submit" value="Login" />
+
+                            @*<button type="submit" style="background-color:#D68500" class="btn" value="Login">Entrar</button>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="js/jquery.easing.min.js"></script>
+        <script src="js/jquery.fittext.js"></script>
+        <script src="js/wow.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="js/creative.js"></script>
+
+    </body>
+}
+
+@*Esto es pra crea javas cript *@
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

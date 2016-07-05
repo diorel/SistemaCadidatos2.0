@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CandidatosSistema.Models.Sueldo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Calve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCaptura)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCaptura)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SueldoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SueldoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SueldoId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model CandidatosSistema.Models.Sueldo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sueldo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Calve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCaptura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCaptura)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SueldoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

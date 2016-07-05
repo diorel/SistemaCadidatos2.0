@@ -1,0 +1,39 @@
+﻿body 
+{
+  background-color: #F2F2F2;
+}
+header
+{
+    background-color:#92CF40;
+    color:#FFFFFD;   
+}
+
+nav
+{
+  color:#FFFFFD;
+}
+.nav > li > a:focus, .nav > li > a:hover
+{
+    background-color:orange;
+}
+li
+{
+    color:#FFFFFD;
+}
+a
+{
+    color:#FFFFFD;
+}
+
+section#Contenedor
+{
+    padding-left:10%;
+    padding-right:10%;
+    box-shadow: 10px 10px 5px #888;
+}
+footer
+{
+    background-color:hotpink;
+}
+
+

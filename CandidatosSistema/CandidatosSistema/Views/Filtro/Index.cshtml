@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CandidatosSistema.Models.Candidato>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoCandidato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capturista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCaptura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Archivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Escolaridad.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localidad.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sueldo.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidad.Calve)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoCandidato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capturista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCaptura)
+        </td>
+        <td>
+            @if (!string.IsNullOrEmpty(item.Archivo))
+            {
+                <a href=@string.Format("{0}/{1}", ViewBag.CarpetaArchivos, item.Archivo) target="_blank">Ver archvo adjunto</a>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Escolaridad.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localidad.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sueldo.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidad.Calve)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CandidatoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CandidatoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CandidatoId })
+        </td>
+    </tr>
+}
+
+</table>

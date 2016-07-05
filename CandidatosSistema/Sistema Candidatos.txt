@@ -1,0 +1,91 @@
+/*
+***********************************************
+Este sistema cuenta con 4 tablas 
+3 de catalo que son Ecolaridad,Localidad,Sueldo
+1 tansaccional que es Candidato
+***********************************************
+*/
+
+--DROP DATABASE SisCandidatos
+
+-- Se crea la BD
+CREATE DATABASE SisCandidatos
+
+-- Se Usa la BD
+USE SisCandidatos
+
+-- Catalogo de escolaridad
+CREATE TABLE Escolaridad
+(
+	EscolaridadId INT PRIMARY KEY IDENTITY,
+	Clave VARCHAR(10) NOT NULL,
+	Descripcion VARCHAR(50)NOT NULL,
+	Estado BIT,
+	FechaCaptura DATE
+)
+
+-- Catalogo de Localidad
+CREATE TABLE Localidad
+(
+	LocalidadId INT PRIMARY KEY IDENTITY,
+	Clave VARCHAR(10) NOT NULL,
+	Descripcion VARCHAR(10) NOT NULL,
+	Estado BIT,
+	FechaCaptura DATE
+)
+
+-- Catalogo de Sueldo
+CREATE TABLE Sueldo
+(
+	SueldoId INT PRIMARY KEY IDENTITY,
+	Calve VARCHAR(10)NOT NULL,
+	Descripcion VARCHAR(10),
+	FechaCaptura DATE
+)
+
+--Catalogo de Candidato
+CREATE TABLE Candidato
+(
+	CandisatoId INT PRIMARY KEY IDENTITY,
+	Nombre VARCHAR(140) NOT NULL,
+	Telefono VARCHAR(50),
+	Correo VARCHAR(50),
+	LocalidadId INT,
+	SueldoId INT,
+	EscolaridadId INT,
+	EstadoCandidato BIT,
+	Capturista VARCHAR(150),
+	FechaCaptura DATETIME,
+	Archivo VARCHAR(150)
+)
+
+DROP TABLE Usuario
+
+CREATE TABLE Usuario
+(
+	UsuarioId INT PRIMARY KEY IDENTITY,
+	Nombre VARCHAR(150),
+	Usuario VARCHAR(15),
+	Clave VARCHAR(15),
+	FachaAlta DATE,
+	Estado BIT
+)
+
+
+
+
+SELECT * FROM Escolaridad
+SELECT * FROM Localidad
+SELECT * FROM Sueldo
+SELECT * FROM Candidato
+SELECT * FROM Usuario
+
+
+
+
+
+
+
+
+
+

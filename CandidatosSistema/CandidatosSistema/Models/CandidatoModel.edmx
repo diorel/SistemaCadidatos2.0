@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SisCandidatosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="CandidatoId" />
+          </Key>
+          <Property Name="CandidatoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="LocalidadId" Type="int" />
+          <Property Name="SueldoId" Type="int" />
+          <Property Name="EscolaridadId" Type="int" />
+          <Property Name="EspecialidadId" Type="int" />
+          <Property Name="EstadoCandidato" Type="bit" />
+          <Property Name="Capturista" Type="varchar" MaxLength="150" />
+          <Property Name="FechaCaptura" Type="datetime" />
+          <Property Name="Archivo" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Escolaridad">
+          <Key>
+            <PropertyRef Name="EscolaridadId" />
+          </Key>
+          <Property Name="EscolaridadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="FechaCaptura" Type="date" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="EspecialidadId" />
+          </Key>
+          <Property Name="EspecialidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Calve" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="FechaCaptura" Type="date" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="LocalidadId" />
+          </Key>
+          <Property Name="LocalidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="FechaCaptura" Type="date" />
+        </EntityType>
+        <EntityType Name="Sueldo">
+          <Key>
+            <PropertyRef Name="SueldoId" />
+          </Key>
+          <Property Name="SueldoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="FechaCaptura" Type="date" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="Usuario" Type="varchar" MaxLength="15" />
+          <Property Name="Clave" Type="varchar" MaxLength="15" />
+          <Property Name="FechaAlta" Type="date" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Candidato_Escolaridad">
+          <End Role="Escolaridad" Type="Self.Escolaridad" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridad">
+              <PropertyRef Name="EscolaridadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EscolaridadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidato_Especialidad">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="EspecialidadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidato_Localidad">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="LocalidadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="LocalidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidato_Sueldo">
+          <End Role="Sueldo" Type="Self.Sueldo" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sueldo">
+              <PropertyRef Name="SueldoId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="SueldoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SisCandidatosModelStoreContainer">
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Escolaridad" EntityType="Self.Escolaridad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sueldo" EntityType="Self.Sueldo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Candidato_Escolaridad" Association="Self.FK_Candidato_Escolaridad">
+            <End Role="Escolaridad" EntitySet="Escolaridad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidato_Especialidad" Association="Self.FK_Candidato_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidato_Localidad" Association="Self.FK_Candidato_Localidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidato_Sueldo" Association="Self.FK_Candidato_Sueldo">
+            <End Role="Sueldo" EntitySet="Sueldo" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SisCandidatosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="CandidatoId" />
+          </Key>
+          <Property Name="CandidatoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocalidadId" Type="Int32" />
+          <Property Name="SueldoId" Type="Int32" />
+          <Property Name="EscolaridadId" Type="Int32" />
+          <Property Name="EspecialidadId" Type="Int32" />
+          <Property Name="EstadoCandidato" Type="Boolean" />
+          <Property Name="Capturista" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCaptura" Type="DateTime" Precision="3" />
+          <Property Name="Archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Escolaridad" Relationship="Self.FK_Candidato_Escolaridad" FromRole="Candidato" ToRole="Escolaridad" />
+          <NavigationProperty Name="Localidad" Relationship="Self.FK_Candidato_Localidad" FromRole="Candidato" ToRole="Localidad" />
+          <NavigationProperty Name="Sueldo" Relationship="Self.FK_Candidato_Sueldo" FromRole="Candidato" ToRole="Sueldo" />
+          <NavigationProperty Name="Especialidad" Relationship="SisCandidatosModel.FK_Candidato_Especialidad" FromRole="Candidato" ToRole="Especialidad" />
+        </EntityType>
+        <EntityType Name="Escolaridad">
+          <Key>
+            <PropertyRef Name="EscolaridadId" />
+          </Key>
+          <Property Name="EscolaridadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="FechaCaptura" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FK_Candidato_Escolaridad" FromRole="Escolaridad" ToRole="Candidato" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="LocalidadId" />
+          </Key>
+          <Property Name="LocalidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="FechaCaptura" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FK_Candidato_Localidad" FromRole="Localidad" ToRole="Candidato" />
+        </EntityType>
+        <EntityType Name="Sueldo">
+          <Key>
+            <PropertyRef Name="SueldoId" />
+          </Key>
+          <Property Name="SueldoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="FechaCaptura" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FK_Candidato_Sueldo" FromRole="Sueldo" ToRole="Candidato" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Candidato_Escolaridad">
+          <End Role="Escolaridad" Type="Self.Escolaridad" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridad">
+              <PropertyRef Name="EscolaridadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EscolaridadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidato_Localidad">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="LocalidadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="LocalidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Candidato_Sueldo">
+          <End Role="Sueldo" Type="Self.Sueldo" Multiplicity="0..1" />
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sueldo">
+              <PropertyRef Name="SueldoId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="SueldoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SisCandidatosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" />
+          <EntitySet Name="Escolaridad" EntityType="Self.Escolaridad" />
+          <EntitySet Name="Localidad" EntityType="Self.Localidad" />
+          <EntitySet Name="Sueldo" EntityType="Self.Sueldo" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Candidato_Escolaridad" Association="Self.FK_Candidato_Escolaridad">
+            <End Role="Escolaridad" EntitySet="Escolaridad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidato_Localidad" Association="Self.FK_Candidato_Localidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Candidato_Sueldo" Association="Self.FK_Candidato_Sueldo">
+            <End Role="Sueldo" EntitySet="Sueldo" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+          <EntitySet Name="Especialidad" EntityType="SisCandidatosModel.Especialidad" />
+          <AssociationSet Name="FK_Candidato_Especialidad" Association="SisCandidatosModel.FK_Candidato_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Candidato" EntitySet="Candidato" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="EspecialidadId" />
+          </Key>
+          <Property Name="EspecialidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Calve" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="FechaCaptura" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Candidato" Relationship="SisCandidatosModel.FK_Candidato_Especialidad" FromRole="Especialidad" ToRole="Candidato" />
+        </EntityType>
+        <Association Name="FK_Candidato_Especialidad">
+          <End Type="SisCandidatosModel.Especialidad" Role="Especialidad" Multiplicity="0..1" />
+          <End Type="SisCandidatosModel.Candidato" Role="Candidato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="EspecialidadId" />
+            </Principal>
+            <Dependent Role="Candidato">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SisCandidatosModelStoreContainer" CdmEntityContainer="SisCandidatosEntities">
+          <EntitySetMapping Name="Candidato">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Candidato">
+              <MappingFragment StoreEntitySet="Candidato">
+                <ScalarProperty Name="CandidatoId" ColumnName="CandidatoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="LocalidadId" ColumnName="LocalidadId" />
+                <ScalarProperty Name="SueldoId" ColumnName="SueldoId" />
+                <ScalarProperty Name="EscolaridadId" ColumnName="EscolaridadId" />
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+                <ScalarProperty Name="EstadoCandidato" ColumnName="EstadoCandidato" />
+                <ScalarProperty Name="Capturista" ColumnName="Capturista" />
+                <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escolaridad">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Escolaridad">
+              <MappingFragment StoreEntitySet="Escolaridad">
+                <ScalarProperty Name="EscolaridadId" ColumnName="EscolaridadId" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidad">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Localidad">
+              <MappingFragment StoreEntitySet="Localidad">
+                <ScalarProperty Name="LocalidadId" ColumnName="LocalidadId" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sueldo">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Sueldo">
+              <MappingFragment StoreEntitySet="Sueldo">
+                <ScalarProperty Name="SueldoId" ColumnName="SueldoId" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad">
+            <EntityTypeMapping TypeName="SisCandidatosModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Calve" ColumnName="Calve" />
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
